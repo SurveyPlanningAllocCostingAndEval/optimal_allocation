@@ -1,144 +1,200 @@
 <p align="center">
-  <img src="www/space_banner.png" width="100%" alt="SPACE Optimal Allocation Calculator Banner">
+
+<img src="www/space_banner.png" alt="SPACE Optimal Allocation Calculator Banner" width="100%"/>
+
 </p>
 
 # SPACE — Optimal Allocation Calculator
 
-**SPACE (Survey Planning, Allocation, Costing and Evaluation)** is a modular, research-grade decision-support tool for iterative survey planning.  
-It implements a fully automated **Bayesian optimal allocation pipeline** that updates daily based on field results, posterior probabilities, and next-day predictive inputs.
+### A Complete Bayesian Workflow for Iterative, Multi‑Day Survey Planning
 
-This repository contains the complete codebase for the **Shiny application** used to generate, update, and review survey effort allocations across multiple field days.
+**Survey Planning, Allocation, Costing and Evaluation (SPACE)**
 
----
+------------------------------------------------------------------------
 
-## 🚀 Key Features
+# 📘 Introduction
 
-### Bayesian Allocation Engine
-- Computes optimal survey effort distributions across spatial units  
-- Handles prior probabilities, sweep widths, and likelihood structures  
-- Supports iterative multi-day field survey workflows  
+The **SPACE Optimal Allocation Calculator** is a fully modular, research‑grade tool designed to support **multi‑day archaeological survey planning** using a **Bayesian updating framework**.
 
-### Iterative Posterior Updates
-- Ingest Day 1 field results  
-- Compute updated posterior probabilities  
-- Generate Day 2 inputs  
-- Repeat for additional survey days  
+This repository contains the **complete local version** of the Shiny application:
 
-### Automated Filtering & Rerun Logic
-- Detects and removes units with negative allocations  
-- Automatically recalculates until a stable, valid allocation is reached  
+-   full UI (tab-based, guided workflow)\
+-   complete Bayesian allocation engine\
+-   iterative posterior update workflow\
+-   daily update + next-day allocation generation\
+-   all scripts, helpers, and assets required to run the app offline
 
-### Clean, Modular Architecture
-Core logic is split into dedicated scripts (00–08) for:
-- Setup  
-- Core allocation math  
-- Filtering and reruns  
-- Results ingestion  
-- Update table creation  
-- Posterior computation  
-- Next-day input preparation  
-- Final next-day allocation  
+Running the app locally ensures that **all scripts, modules, and functions load correctly**, that file paths are resolved correctly, and that allocation logic is identical to the development version.
 
-### Shiny Front-End
-- Intuitive UI for uploading inputs  
-- Interactive DataTables for all outputs  
-- Downloadable CSV/XLSX files  
-- Fully reproducible allocation workflow  
+------------------------------------------------------------------------
 
----
+# 📥 Cloning or Downloading the Repository
 
-## 📁 Repository Structure
+To run the application, users **must obtain the full repository**, including all subdirectories.
 
-```text
-optimal_allocation/
-├── app.R                      # Main Shiny entry point
-├── scripts/                   # Core computation modules
-├── ui/                        # UI components
-├── server/                    # Server-side workflow modules
-├── www/                       # Assets (banner, CSS, images)
-│     └── space_banner.png
-├── data/                      # Example input files (optional)
-├── LICENSE                    # MIT license
-└── README.md                  # Project documentation
+## Option A — Clone via Git (recommended)
+
+``` bash
+git clone https://github.com/SurveyPlanningAllocCostingAndEval/optimal_allocation.git
 ```
 
----
+## Option B — Download ZIP
 
-## 🛠 Installation & Running the App
+1.  Go to the repository page\
+2.  Click **Code → Download ZIP**\
+3.  Extract the contents\
+4.  Ensure the folder structure matches:
 
-### 1. Install required R packages
+``` text
+optimal_allocation/
+├── app.R
+├── scripts/
+├── ui/
+├── server/
+├── www/
+├── data/
+├── LICENSE
+└── README.md
+```
 
-```r
+------------------------------------------------------------------------
+
+# 🛠 Running the App Locally
+
+### 1. Open R or RStudio
+
+Navigate to the repo folder:
+
+``` r
+setwd("path/to/optimal_allocation")
+```
+
+### 2. Install dependencies
+
+``` r
 install.packages(c(
   "shiny", "DT", "readxl", "readr", "dplyr", "tidyr"
 ))
 ```
 
-### 2. Run the application
+### 3. Launch the application
 
-```r
+``` r
 shiny::runApp()
 ```
 
-Or specify a folder explicitly:
+This loads the complete multi-step interface.
 
-```r
-shiny::runApp("path/to/optimal_allocation")
+------------------------------------------------------------------------
+
+# 📂 Required Input Format
+
+To run the model successfully, the user must prepare two key input datasets.
+
+## **1. Initial Input File (Day 1)**
+
+A CSV or XLSX containing:
+
+```         
+unit_id
+area
+probability
+sweep_width
+visibility
 ```
 
----
+The app validates all fields on load.
 
-## 📘 Workflow Overview
+## **2. Field Results File (Day 1 Results)**
 
-### Day 1 Workflow
-1. Upload initial input table  
-2. Enter total effort (L)  
-3. Run allocation  
-4. Review:
-   - Final allocations  
-   - Dropped/filtered units  
+Used for posterior computation after the initial allocations are generated and units have been surveyed accordingly. This dataset must include the following fields/columns:
 
-### Day 2+ Iterative Workflow
-1. Upload field results from previous day  
-2. Ingest and clean results  
-3. Build the update table  
-4. Compute posteriors  
-5. Prepare next-day inputs  
-6. Run next-day allocation  
+```         
+unit_id
+L_walked
+success
+```
 
-All steps optionally generate CSV/XLSX files for reproducibility and external review.
+------------------------------------------------------------------------
 
----
+# 🔄 Full Multi‑Day Workflow
 
-## 🧪 Example Use Cases
+## 🟦 **Day 1: Initial Allocation**
 
-- Archaeological survey planning  
-- Ecological search optimization  
-- Modeling detection workflows  
-- Adaptive fieldwork decision-support  
-- Resource distribution planning  
-- Multi-day survey design  
+1.  Upload initial input file\
+2.  Enter total effort (L)\
+3.  App:
+    -   calculates detection probabilities\
+    -   applies Bayesian allocation\
+    -   filters invalid / negative units\
+    -   iterates until stable\
+4.  View:
+    -   final allocation table\
+    -   dropped units\
+    -   diagnostics
 
----
+------------------------------------------------------------------------
 
-## 📜 License
+## 🟩 **Ingest Day 1 Results**
 
-Released under the **MIT License** — see `LICENSE` for details.  
-You are free to use, modify, distribute, and integrate this tool into academic or applied projects.
+1.  Upload field results\
+2.  App merges results with known units\
+3.  Validates completeness and format\
+4.  Computes hits/misses and observed success
 
----
+------------------------------------------------------------------------
 
-## 🤝 Contributions
+## 🟧 **Build Update Table**
 
-Contributions, issue reports, and feature suggestions are welcome.  
-If you'd like to extend the SPACE toolkit—UI improvements, algorithmic enhancements, or interoperability features—please submit a pull request or open an issue.
+App combines priors, results, and model parameters to produce:
 
----
+-   updated inputs\
+-   evidence structure\
+-   likelihood terms
 
-## 📧 Contact
+This becomes the basis for posterior computation.
 
-For academic, research, or collaboration inquiries:
+------------------------------------------------------------------------
 
-**Steven J. Edwards**  
-Professor, Geospatial Data Analytics  
-Centre of Geographic Sciences / Nova Scotia Community College (NSCC)
+## 🟥 **Compute Posteriors**
+
+App computes posterior probabilities for each unit:
+
+-   Bayesian updating\
+-   normalized probabilities\
+-   next-day priors
+
+------------------------------------------------------------------------
+
+## 🟪 **Prepare Next Day Inputs**
+
+Using: - original model data\
+- updated posteriors\
+- sweep-width and visibility values
+
+Outputs: - full next-day input table (CSV/XLSX)
+
+------------------------------------------------------------------------
+
+## 🟫 **Run Day 2 Allocation (Repeat)**
+
+1.  Enter effort (L)\
+2.  Run allocation\
+3.  Export results\
+4.  Collect field data the next day\
+5.  Repeat as needed
+
+------------------------------------------------------------------------
+
+# 📜 License
+
+Released under the **MIT License**.\
+You are free to copy, modify, distribute, and use the software.
+
+------------------------------------------------------------------------
+
+# 📧 Contact
+
+**Steven Edwards**\
+Faculty, Geospatial Data Analytics\
+Centre of Geographic Sciences / NSCC
