@@ -8,8 +8,6 @@
 
 ### A Complete Bayesian Workflow for Iterative, Multi‑Day Survey Planning
 
-**Survey Planning, Allocation, Costing and Evaluation (SPACE)**
-
 ------------------------------------------------------------------------
 
 # 📘 Introduction
@@ -119,10 +117,10 @@ success
 
 # 🔄 Full Multi‑Day Workflow
 
-## 🟦 **Day 1: Initial Allocation**
+## 🟦 **Initial Allocation**
 
-1.  Upload initial input file\
-2.  Enter total effort (L)\
+1.  Upload initial input file
+2.  Enter total effort (L)
 3.  App:
     -   calculates detection probabilities\
     -   applies Bayesian allocation\
