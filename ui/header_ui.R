@@ -10,21 +10,25 @@
 #  Notes:
 #   - Controls branding, title bar styling, and app-wide header elements.
 #   - Provides a consistent look-and-feel across workflow tabs.
+#   - Updated to display banner image instead of text header.
 # =====================================================================
 
 header_ui <- function() {
   tagList(
+    
+    # ============================================================
+    # Global Header Styles
+    # ============================================================
     tags$head(
       tags$style(HTML("
         /* Full-width blue header bar with subtle drop shadow */
         .header-bar {
-          background-color: #1E3765;
+          background-color: #092646;
           color: white;
           width: 100%;
-          padding: 12px 30px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          padding: 0;                 /* remove padding so banner fits top edge */
+          margin: 0;
+          display: block;
           box-sizing: border-box;
           box-shadow: 0 3px 12px rgba(0,0,0,0.18);
         }
@@ -62,7 +66,7 @@ header_ui <- function() {
         .custom-btn:hover {
           transform: translateY(-1px);
           background: linear-gradient(180deg, #2A4D8F 0%, #203d73 100%) !important;
-          box-shadow: 0 3px 10px rgba(30,55,101,0.35); /* ✨ soft blue glow */
+          box-shadow: 0 3px 10px rgba(30,55,101,0.35);
         }
 
         .step-label {
@@ -76,7 +80,6 @@ header_ui <- function() {
           transition: all 0.2s ease-in-out;
         }
 
-        /* ✨ Hover effect for step labels */
         .step-label:hover {
           color: #2A4D8F;
           transform: translateX(2px);
@@ -95,7 +98,7 @@ header_ui <- function() {
           color:#1E3765;
         }
 
-        /* ---- New sidebar styling ---- */
+        /* Sidebar panel styling */
         .sidebar-panel {
           background-color: #f7f8fa;
           border-radius: 10px;
@@ -113,19 +116,16 @@ header_ui <- function() {
           font-size: 20px;
         }
 
-        /* ---- Step 4: refined section dividers ---- */
         hr {
           border: 0;
           border-top: 1px solid rgba(30,55,101,0.15);
           margin: 16px 0;
         }
 
-        /* ---- Step 5: subtle global background contrast ---- */
         body, .shiny-bound-output {
           background-color: #fbfbfc;
         }
 
-        /* ---- Step 6: rounded form elements ---- */
         input, select, .form-control {
           border-radius: 6px !important;
           border: 1px solid #ccc !important;
@@ -134,9 +134,20 @@ header_ui <- function() {
       "))
     ),
     
-    div(class = "header-bar",
-        h1(class = "header-title", "SPACE"),
-        h2(class = "header-subtitle", "Optimal Allocation Calculator")
+    # ============================================================
+    # Banner Image Header
+    # ============================================================
+    div(
+      class = "header-bar",
+      tags$img(
+        src = "space_banner_cropped.png",
+        style = "
+          width: 40%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+        "
+      )
     )
   )
 }
