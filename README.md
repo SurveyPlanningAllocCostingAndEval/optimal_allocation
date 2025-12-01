@@ -4,8 +4,6 @@
 
 </p>
 
-# SPACE — Optimal Allocation Calculator
-
 ### A Complete Bayesian Workflow for Iterative, Multi‑Day Survey Planning
 
 ------------------------------------------------------------------------
@@ -22,13 +20,13 @@ This repository contains the **complete local version** of the Shiny application
 -   daily update + next-day allocation generation\
 -   all scripts, helpers, and assets required to run the app offline
 
-Running the app locally ensures that **all scripts, modules, and functions load correctly**, that file paths are resolved correctly, and that allocation logic is identical to the development version.
+Running the app locally ensures that all scripts, modules, and functions load correctly, that file paths are resolved correctly, and that allocation logic is identical to the development version.
 
 ------------------------------------------------------------------------
 
 # 📥 Cloning or Downloading the Repository
 
-To run the application, users **must obtain the full repository**, including all subdirectories.
+To run the application, users must obtain the full repository, including all subdirectories.
 
 ## Option A — Clone via Git (recommended)
 
@@ -89,7 +87,7 @@ This loads the complete multi-step interface.
 
 To run the model successfully, the user must prepare two key input datasets.
 
-## **1. Initial Input File (Day 1)**
+## **1. Initial Input File**
 
 A CSV or XLSX containing:
 
@@ -103,7 +101,7 @@ visibility
 
 The app validates all fields on load.
 
-## **2. Field Results File (Day 1 Results)**
+## **2. Field Results File**
 
 Used for posterior computation after the initial allocations are generated and units have been surveyed accordingly. This dataset must include the following fields/columns:
 
@@ -122,22 +120,22 @@ success
 1.  Upload initial input file
 2.  Enter total effort (L)
 3.  App:
-    -   calculates detection probabilities\
-    -   applies Bayesian allocation\
-    -   filters invalid / negative units\
-    -   iterates until stable\
+    -   calculates detection probabilities
+    -   applies Bayesian allocation
+    -   filters invalid / negative units
+    -   iterates until stable
 4.  View:
-    -   final allocation table\
-    -   dropped units\
+    -   final allocation table
+    -   dropped units
     -   diagnostics
 
 ------------------------------------------------------------------------
 
-## 🟩 **Ingest Day 1 Results**
+## 🟩 **Ingest Results**
 
-1.  Upload field results\
-2.  App merges results with known units\
-3.  Validates completeness and format\
+1.  Upload field results
+2.  App merges results with known units
+3.  Validates completeness and format
 4.  Computes hits/misses and observed success
 
 ------------------------------------------------------------------------
@@ -146,8 +144,8 @@ success
 
 App combines priors, results, and model parameters to produce:
 
--   updated inputs\
--   evidence structure\
+-   updated inputs
+-   evidence structure
 -   likelihood terms
 
 This becomes the basis for posterior computation.
@@ -158,41 +156,36 @@ This becomes the basis for posterior computation.
 
 App computes posterior probabilities for each unit:
 
--   Bayesian updating\
--   normalized probabilities\
+-   Bayesian updating
+-   normalized probabilities
 -   next-day priors
 
 ------------------------------------------------------------------------
 
 ## 🟪 **Prepare Next Day Inputs**
 
-Using: - original model data\
-- updated posteriors\
-- sweep-width and visibility values
+Using: - original model data - updated posteriors - sweep-width and visibility values
 
 Outputs: - full next-day input table (CSV/XLSX)
 
 ------------------------------------------------------------------------
 
-## 🟫 **Run Day 2 Allocation (Repeat)**
+## 🟫 **Run Next Allocation (Repeat)**
 
-1.  Enter effort (L)\
-2.  Run allocation\
-3.  Export results\
-4.  Collect field data the next day\
+1.  Enter effort (L)
+2.  Run allocation
+3.  Export results
+4.  Collect field data the next day
 5.  Repeat as needed
 
 ------------------------------------------------------------------------
 
 # 📜 License
 
-Released under the **MIT License**.\
-You are free to copy, modify, distribute, and use the software.
+Released under the **MIT License**. You are free to copy, modify, distribute, and use the software.
 
 ------------------------------------------------------------------------
 
 # 📧 Contact
 
-**Steven Edwards**\
-Faculty, Geospatial Data Analytics\
-Centre of Geographic Sciences / NSCC
+**Steven Edwards** Faculty, Geospatial Data Analytics Centre of Geographic Sciences / NSCC
