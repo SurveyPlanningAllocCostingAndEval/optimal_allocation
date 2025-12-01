@@ -14,10 +14,10 @@ The **SPACE Optimal Allocation Calculator** is a fully modular, research‑grade
 
 This repository contains the **complete local version** of the Shiny application:
 
--   full UI (tab-based, guided workflow)\
--   complete Bayesian allocation engine\
--   iterative posterior update workflow\
--   daily update + next-day allocation generation\
+-   full UI (tab-based, guided workflow)
+-   complete Bayesian allocation engine
+-   iterative posterior update workflow
+-   daily update + next-day allocation generation
 -   all scripts, helpers, and assets required to run the app offline
 
 Running the app locally ensures that all scripts, modules, and functions load correctly, that file paths are resolved correctly, and that allocation logic is identical to the development version.
@@ -36,9 +36,9 @@ git clone https://github.com/SurveyPlanningAllocCostingAndEval/optimal_allocatio
 
 ## Option B — Download ZIP
 
-1.  Go to the repository page\
-2.  Click **Code → Download ZIP**\
-3.  Extract the contents\
+1.  Go to the repository page
+2.  Click **Code → Download ZIP**
+3.  Extract the contents
 4.  Ensure the folder structure matches:
 
 ``` text
