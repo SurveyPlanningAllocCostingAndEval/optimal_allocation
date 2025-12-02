@@ -190,4 +190,6 @@ Released under the **MIT License**. You are free to copy, modify, distribute, an
 
 # 📧 Contact
 
-**Steven Edwards** Faculty, Geospatial Data Analytics Centre of Geographic Sciences / NSCC
+**Steven Edwards** 
+Faculty, Geospatial Data Analytics 
+Centre of Geographic Sciences / NSCC
